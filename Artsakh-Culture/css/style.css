@@ -266,8 +266,8 @@ main{
         padding-top: 46px;
         height: 131px;
     }
-    .large_img{ height: 100%; }
-    .container { 
+/*     .large_img{ height: 100%; }
+    .container {  */
         max-width: 352px;
         padding: 10% 0;
     }
