@@ -267,7 +267,7 @@ main{
         height: 131px;
     }
     
-/* .large_img{ height: 100%; } */
+.large_img{ height: 100%; }
     
     .container { 
         max-width: 352px;
