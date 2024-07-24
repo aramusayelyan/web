@@ -369,7 +369,7 @@ main{
     }
     .aboutUs_rightCont {
         width: 366px;
-        height: 567px;
+        height: 583px;
     }
 }
 @media (max-width: 1052px){
@@ -1040,14 +1040,17 @@ main{
 .social_img_gmail { width: 25px; }
 /* adaptive */
 @media (max-width: 1299px){
+    .footer_contact{ max-width: 382px; }
+    .right_content{ max-width: 295px; }
     .contact_number { font-size: 23px; }
     .contact_info {
         width: 82%;
-        font-size: 15px;
+        font-size: 14px;
     }
-    .contact_AC, .contact_mail { font-size: 17px; }
-    .form_mail { width: 160px; }
+    .contact_AC, .contact_mail { font-size: 15px; }
+    .form_mail { width: 219px; }
     .form_btn{ width: 53px; }
+    .footer_bottom_container{ max-width: 1174px; }
     .bottom_socialLinks {
         width: 110px;
         gap:27px;
@@ -1125,3 +1128,31 @@ main{
 
 }
 /* footer */
+/* Page animation */
+main,footer{ overflow: hidden; }
+.hidden,.scrollRight{
+    transform: translateY(-50%);
+    transition:all 4s;
+}
+.scrollRight{ transform: translateX(100%); }
+.hiddentab,.scrollheading,.scrollLeft,.scrollBottom,.opacity{ transition:all 3s ease-in-out; }
+.hiddentab{ transform: translateY(-50%); }
+.scrollheading{ transform: translateX(-80%); }
+.scrollLeft{ transform: translateX(-110%); }
+.scrollBottom{ transform: translateY(100%); }
+.opacity{ opacity: 0; }
+.card_hidden{
+    position: relative;
+    transform: translateX(-100%);
+    transition: transform 3s ease-in-out;
+    opacity: 0 4s ease-in-out;
+}
+.card_hidden.show{
+    opacity: 1;
+    transform: translateX(0);
+}
+.show{
+    transform: translateX(0%);
+    transform: translateY(0%);
+    opacity: 1;
+}
