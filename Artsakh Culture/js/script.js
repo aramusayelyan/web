@@ -19,22 +19,56 @@ document.querySelectorAll(".dropdown-btn").forEach((dropdownBtn, index) => {
 // burger js 
 const burger = document.querySelector('.burger-lines');
 const offscreenMenu = document.querySelector('.burger_content');
-const burgerLink = document.querySelectorAll('.burger_link');
+const burgerLinks = document.querySelectorAll('.burger_link');
+const languageButtons = document.querySelectorAll('.burger_dropdown_link');
 
-burger.addEventListener('click', () => {
+function toggleMenu() {
   burger.classList.toggle('active');
   offscreenMenu.classList.toggle('active');
+}
+
+function closeMenu() {
+  burger.classList.remove('active');
+  offscreenMenu.classList.remove('active');
+}
+
+burger.addEventListener('click', toggleMenu);
+
+burgerLinks.forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+languageButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    closeMenu();
+  });
 });
 
 
 // Translate switch function
-function Switch() {
-  const items = document.getElementsByClassName("language");
-  const tmp = items[0].innerHTML;
-  items[0].innerHTML = items[1].innerHTML;
-  items[1].innerHTML = tmp;
+// // Получаем элементы
+// const switchButton = document.querySelector('.language');
+// const firstTextarea = document.querySelector('.left_textarea');
 
-}
+// // Функция для переключения
+// function Switch() {
+//     // Проверяем текущее значение placeholder и меняем на противоположное
+//     if (firstTextarea.placeholder === switchButton.getAttribute('data-placeholder-arm')) {
+//         // Переключаем на русское значение
+//         switchButton.innerHTML = 'Բարբառ';
+//         firstTextarea.placeholder = switchButton.getAttribute('data-placeholder-tr');
+//     } else {
+//         // Переключаем на английское значение
+//         switchButton.innerHTML = 'Հայերեն';
+//         firstTextarea.placeholder = switchButton.getAttribute('data-placeholder-arm');
+//     }
+// }
+
+// Добавляем обработчик клика на кнопку для переключения
+// switchButton.addEventListener('click', Switch);
+
+
+
 
 // running line function
 document.addEventListener('DOMContentLoaded', function() {
@@ -49,29 +83,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // autoscroll gallery 
-document.addEventListener('DOMContentLoaded', function() {
-  const marquee = document.querySelector('.first_group');
-  const marquee1 = document.querySelector('.second_group');
-  const content = document.querySelector('.img_container');
+// document.addEventListener('DOMContentLoaded', function() {
+//   const marquee = document.querySelector('.first_group');
+//   const marquee1 = document.querySelector('.second_group');
+//   const content = document.querySelector('.img_container');
 
-  const cloneCount = 30;
-  for (let i = 0; i < cloneCount; i++) {
-    const clone = content.cloneNode(true);
-    marquee.appendChild(clone);
-  }
+//   const cloneCount = 30;
+//   for (let i = 0; i < cloneCount; i++) {
+//     const clone = content.cloneNode(true);
+//     marquee.appendChild(clone);
+//   }
 
-  for (let i = 0; i < cloneCount; i++) {
-    const clone = content.cloneNode(true);
-    marquee1.appendChild(clone);
-  }
-});
+//   for (let i = 0; i < cloneCount; i++) {
+//     const clone = content.cloneNode(true);
+//     marquee1.appendChild(clone);
+//   }
+// });
 
 // card slider
 document.addEventListener('DOMContentLoaded', function() {
   const slider = document.querySelector('.card_content');
   const slides = document.querySelectorAll('.card');
-  const prevButton = document.querySelector('.cards_right_arrow');
-  const nextButton = document.querySelector('.cards_left_arrow');
+  const prevButton = document.querySelector('.cards_left_arrow');
+  const nextButton = document.querySelector('.cards_right_arrow');
   let currentIndex = 0;
 
   function updateSliderPosition() {
@@ -153,3 +187,44 @@ document.querySelector('.popup_wrapper').onclick = function(event) {
       document.querySelector('.popup_wrapper').style.display = 'none';
   }
 };
+
+// Page animation 
+const observer = new IntersectionObserver((entries) =>{
+  entries.forEach((entry) =>{
+    console.log(entry);
+    if(entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }else{
+      entry.target.classList.remove('show'); 
+    }
+  });
+});
+const hiddenElements = document.querySelectorAll('.hidden');
+const hiddenElements1 = document.querySelectorAll('.hiddentab');
+const hiddenElements2 = document.querySelectorAll('.scrollLeft');
+const hiddenElements3 = document.querySelectorAll('.scrollheading');
+const hiddenElements4 = document.querySelectorAll('.scrollRight');
+const hiddenElements5 = document.querySelectorAll('.scrollBottom');
+const hiddenElements6 = document.querySelectorAll('.opacity');
+hiddenElements.forEach((el) => observer.observe(el));
+hiddenElements1.forEach((el) => observer.observe(el));
+hiddenElements2.forEach((el) => observer.observe(el));
+hiddenElements3.forEach((el) => observer.observe(el));
+hiddenElements4.forEach((el) => observer.observe(el));
+hiddenElements5.forEach((el) => observer.observe(el));
+hiddenElements6.forEach((el) => observer.observe(el));
+document.addEventListener('DOMContentLoaded', () => {
+  const hiddenElements = document.querySelectorAll('.card_hidden');
+  
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('show');
+        }, index * 300);
+      }
+    });
+  });
+
+  hiddenElements.forEach(el => observer.observe(el));
+});
